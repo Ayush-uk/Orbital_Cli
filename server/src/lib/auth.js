@@ -14,14 +14,6 @@ export const auth = betterAuth({
     process.env.CLIENT_URL || "http://localhost:3000",
   ],
 
-  advanced: {
-    useSecureCookies: true,
-    defaultCookieAttributes: {
-      sameSite: "none",
-      secure: true,
-    },
-  },
-
   plugins: [
     deviceAuthorization({
       expiresIn: "30m",
