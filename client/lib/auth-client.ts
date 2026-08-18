@@ -1,8 +1,8 @@
-import { deviceAuthorizationClient } from "better-auth/plugins"
-import { createAuthClient } from "better-auth/react"
+import { deviceAuthorizationClient } from "better-auth/client/plugins";
+import { createAuthClient } from "better-auth/client";
 
 export const authClient = createAuthClient({
-  baseURL: process.env.NEXT_PUBLIC_AUTH_URL || "http://localhost:3005",
+  baseURL: "https://orbital-cli-f83y.onrender.com",
   plugins: [
     deviceAuthorizationClient(),
   ],
