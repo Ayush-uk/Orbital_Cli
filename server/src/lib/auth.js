@@ -8,8 +8,10 @@ export const auth = betterAuth({
     provider: "postgresql",
   }),
   baseURL: "http://localhost:3005",
-  basePath: "/api/auth",
-  trustedOrigins: ["http://localhost:3000"],
+  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3005",
+  trustedOrigins: [
+  process.env.CLIENT_URL || "http://localhost:3000",
+],
   plugins: [
     deviceAuthorization({
       // Optional configuration
