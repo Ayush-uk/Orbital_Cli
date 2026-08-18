@@ -16,6 +16,10 @@ export const auth = betterAuth({
 
   advanced: {
     useSecureCookies: true,
+    defaultCookieAttributes: {
+      sameSite: "none",
+      secure: true,
+    },
   },
 
   plugins: [
@@ -33,6 +37,6 @@ export const auth = betterAuth({
   },
 
   logger: {
-    level: "debug",
-  },
+    level: "debug"
+  }
 });
