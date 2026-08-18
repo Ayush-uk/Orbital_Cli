@@ -4,6 +4,9 @@ import { fromNodeHeaders, toNodeHandler } from "better-auth/node";
 import cors from "cors";
 
 const app = express();
+// Trust the first proxy (Render) so Express and middleware read X-Forwarded-* headers.
+// This ensures req.protocol is set to "https" when Render terminates TLS and forwards requests.
+app.set("trust proxy", 1);
 
 const port = process.env.PORT || 3005;
 const clientUrl = process.env.CLIENT_URL || "http://localhost:3000";
@@ -11,7 +14,7 @@ const clientUrl = process.env.CLIENT_URL || "http://localhost:3000";
 app.use(
   cors({
     origin: clientUrl,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   })
 );
