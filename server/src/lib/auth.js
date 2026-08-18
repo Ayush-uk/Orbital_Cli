@@ -7,28 +7,32 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql",
   }),
+
   baseURL: process.env.BETTER_AUTH_URL || "http://localhost:3005",
+
   trustedOrigins: [
-  process.env.CLIENT_URL || "http://localhost:3000",
-],
+    process.env.CLIENT_URL || "http://localhost:3000",
+  ],
+
+  advanced: {
+    useSecureCookies: true,
+  },
+
   plugins: [
     deviceAuthorization({
-      // Optional configuration
-      expiresIn: "30m", // Device code expiration time
-      interval: "5s", // Minimum polling interval
-      
+      expiresIn: "30m",
+      interval: "5s",
     }),
   ],
+
   socialProviders: {
     github: {
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      
     },
-  
   },
 
-    logger: {
-        level: "debug"
-    }
+  logger: {
+    level: "debug",
+  },
 });
